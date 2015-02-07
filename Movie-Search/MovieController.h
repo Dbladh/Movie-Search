@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSArray *resultMovies;
 
+-(void)retrieveMoviesWithSearchString: (NSString *)searchString completionBlock:(void (^)())completion;
+
 @end

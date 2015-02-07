@@ -8,6 +8,7 @@
 
 #import "MSResponseTableViewDataSource.h"
 #import "MovieController.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 static NSString * const cellReuseKey = @"cell";
 
@@ -30,6 +31,11 @@ static NSString * const cellReuseKey = @"cell";
     
     NSDictionary *movie = [MovieController sharedInstance].resultMovies[indexPath.row];
     cell.textLabel.text = movie[@"title"];
+    
+    NSString *imageUrl = [NSString stringWithFormat:@"http://image.tmbd.org/t/p/w500/%@", movie[@"poster_path"]];
+    cell.imageView.image = nil;
+    [cell.imageView cancelImageRequestOperation];
+    [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl]];
 
     return cell;
 }

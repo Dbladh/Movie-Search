@@ -9,6 +9,7 @@
 #import "MSViewController.h"
 #import "MSResponseTableViewDataSource.h"
 #import "MSMovieDetailViewController.h"
+#import "MovieController.h"
 
 @interface MSViewController () <UITableViewDelegate>
 
@@ -33,6 +34,9 @@
 }
 
 - (IBAction)search:(id)sender {
+    [[MovieController sharedInstance] retrieveMoviesWithSearchString:self.searchField.text completionBlock:^{
+        [self.tableView reloadData];
+    }];
 
 }
 
